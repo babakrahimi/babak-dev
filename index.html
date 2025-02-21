@@ -3,103 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-        }
-        h1 {
-            font-size: 2.5rem;
-        }
-        p {
-            margin: 15px 0;
-            font-size: 1.2rem;
-        }
-        .countdown {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .social-links {
-            margin-top: 20px;
-        }
-        .social-links a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: white;
-            font-size: 1.5rem;
-            transition: 0.3s;
-        }
-        .social-links a:hover {
-            opacity: 0.7;
-        }
-        .email {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 10px 20px;
-            background: white;
-            color: #2a5298;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .email:hover {
-            background: #ddd;
-        }
-    </style>
+    <title>Coming Soon</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>🚧 Coming Soon 🚧</h1>
-        <p>We're working on something amazing! Stay tuned.</p>
-        <p class="countdown">Launching in <span id="countdown"></span></p>
-
-        <div class="social-links">
-            <a href="https://github.com/babakrahimi" target="_blank">💻 GitHub</a>
-            <a href="https://linkedin.com/in/babakrahimi" target="_blank">🔗 LinkedIn</a>
+        <h1>Something Exciting is Coming Soon</h1>
+        <p>We're working hard to bring you something amazing. Stay tuned!</p>
+        <div id="countdown">
+            <div class="time-box"><span id="days"></span> days</div>
+            <div class="time-box"><span id="hours"></span> hrs</div>
+            <div class="time-box"><span id="minutes"></span> mins</div>
+            <div class="time-box"><span id="seconds"></span> secs</div>
         </div>
-
-        <a href="mailto:your@email.com" class="email">Get Notified</a>
+        <div class="social-links">
+            <a href="https://github.com/babakrahimi" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/babakrahimi" target="_blank">LinkedIn</a>
+        </div>
     </div>
-
-    <script>
-        // Countdown Timer (End of September 2025)
-        const launchDate = new Date("2025-09-30T23:59:59").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const timeLeft = launchDate - now;
-
-            if (timeLeft < 0) {
-                document.getElementById("countdown").innerHTML = "Launching Soon!";
-                return;
-            }
-
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-    </script>
 </body>
 </html>
