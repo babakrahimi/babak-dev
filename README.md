@@ -28,7 +28,7 @@ The centerpiece of this portfolio is an interactive Mac computer face that:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/babak-astro.git
+git clone https://github.com/babakrahimi/babak-astro.git
 
 # Navigate to the project directory
 cd babak-astro
@@ -89,9 +89,9 @@ This portfolio embraces minimalism and nostalgia:
 ## 🤝 Contact
 
 - **Email**: babak@babak.dev
-- **GitHub**: [github.com/yourusername](https://github.com/yourusername)
-- **LinkedIn**: [linkedin.com/in/yourusername](https://linkedin.com/in/yourusername)
-- **Twitter**: [twitter.com/yourusername](https://twitter.com/yourusername)
+- **GitHub**: [github.com/babakrahimi](https://github.com/babakrahimi)
+- **LinkedIn**: [linkedin.com/in/babakrahimi](https://linkedin.com/in/babakrahimi)
+- **Twitter**: [twitter.com/babakrahimi](https://twitter.com/babakrahimi)
 
 ## 📄 Commands
 
