@@ -14,6 +14,9 @@ export default function Navigation({ onSectionChange }: NavigationProps) {
     { id: 'contact', label: 'Contact', icon: Mail },
   ];
 
+  const activeIndex = sections.findIndex((s) => s.id === activeSection);
+  const underlineWidth = 100 / sections.length;
+
   const handleSectionChange = (sectionId: string) => {
     setActiveSection(sectionId);
     onSectionChange(sectionId);
@@ -31,11 +34,12 @@ export default function Navigation({ onSectionChange }: NavigationProps) {
           <span className="nav-label">{section.label}</span>
         </button>
       ))}
-      <motion.div 
+      <motion.div
         className="nav-underline"
+        style={{ width: `${underlineWidth}%` }}
         initial={false}
         animate={{
-          x: activeSection === 'about' ? 0 : '100%'
+          x: `${activeIndex * 100}%`
         }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       />
