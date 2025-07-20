@@ -1,47 +1,111 @@
-# Astro Starter Kit: Minimal
+# Babak Rahimi - Developer Portfolio
 
-```sh
-npm create astro@latest -- --template minimal
+A minimalist, retro-styled personal portfolio website featuring an interactive Mac face icon. Built with vanilla JavaScript and Vite for optimal performance.
+
+## ✨ Features
+
+- **Retro Design**: Clean, monospace typography with a classic 1990s aesthetic
+- **Interactive Mac Face**: An animated Mac computer icon that follows your cursor
+- **Tab Navigation**: Smooth transitions between About and Contact sections
+- **Responsive Design**: Optimized for all screen sizes
+- **Performance Focused**: Fast loading with minimal dependencies
+
+## 🖥️ Mac Face Icon
+
+The centerpiece of this portfolio is an interactive Mac computer face that:
+- **Follows your cursor** with realistic eye movement
+- **Smiles when idle** after a brief period of inactivity
+- **Responds to hover** with a subtle scale animation
+- **Includes detailed SVG graphics** resembling a classic Mac computer
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or pnpm
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/babak-astro.git
+
+# Navigate to the project directory
+cd babak-astro
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+### Build for Production
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+```bash
+# Build the project
+npm run build
 
-## 🚀 Project Structure
+# Preview the production build
+npm run preview
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠️ Tech Stack
 
-```text
+- **Vanilla JavaScript** - No frameworks, maximum performance
+- **Vite** - Fast build tool and development server
+- **CSS3** - Custom animations and responsive design
+- **SVG** - Scalable graphics for the Mac face icon
+
+## 📁 Project Structure
+
+```
 /
-├── public/
+├── index.html          # Main HTML file
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── main.js         # JavaScript entry point
+│   ├── style.css       # All styling and animations
+│   └── counter.js      # Utility functions
+├── public/
+│   └── vite.svg        # Vite logo
+└── package.json        # Dependencies and scripts
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🎨 Design Philosophy
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+This portfolio embraces minimalism and nostalgia:
+- **Monospace fonts** for that authentic retro computing feel
+- **Black borders and simple layouts** reminiscent of early web design
+- **Subtle animations** that enhance without distracting
+- **Clean typography** with careful spacing and hierarchy
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 📱 Responsive Features
 
-## 🧞 Commands
+- Mobile-optimized layout with adjusted spacing
+- Smaller Mac face icon on mobile devices
+- Touch-friendly navigation and interactions
+- Optimized font sizes for readability on all screens
 
-All commands are run from the root of the project, from a terminal:
+## 🤝 Contact
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- **Email**: babak@babak.dev
+- **GitHub**: [github.com/yourusername](https://github.com/yourusername)
+- **LinkedIn**: [linkedin.com/in/yourusername](https://linkedin.com/in/yourusername)
+- **Twitter**: [twitter.com/yourusername](https://twitter.com/yourusername)
 
-## 👀 Want to learn more?
+## 📄 Commands
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command | Action |
+|---------|--------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start development server at `localhost:5173` |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build locally |
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+*Built with ❤️ by Babak Rahimi*
