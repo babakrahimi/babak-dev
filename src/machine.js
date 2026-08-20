@@ -25,13 +25,14 @@ const WINK_HOLD = 180;
 const ACK_HOLD = 600;
 const TOUCH_LOOK = 1200;
 
-const sign = (n) => (n < 0 ? "-" : "+") + Math.abs(n).toFixed(2);
+const sign = (n) => (n < 0 ? "\u2212" : "+") + Math.abs(n).toFixed(2);
 
 export function initMachine() {
   const root = document.getElementById("machine");
   const button = document.getElementById("machineButton");
   const mouth = document.getElementById("machineMouth");
-  const telPtr = document.getElementById("telPtr");
+  const telPtrX = document.getElementById("telPtrX");
+  const telPtrY = document.getElementById("telPtrY");
   const telState = document.getElementById("telState");
   if (!root || !button) return;
 
@@ -70,7 +71,8 @@ export function initMachine() {
     root.style.setProperty("--shift-x", `${target.shift[0]}px`);
     root.style.setProperty("--shift-y", `${target.shift[1]}px`);
 
-    if (telPtr) telPtr.textContent = `${sign(vector[0])} / ${sign(vector[1])}`;
+    if (telPtrX) telPtrX.textContent = sign(vector[0]);
+    if (telPtrY) telPtrY.textContent = sign(vector[1]);
   }
 
   function schedule() {

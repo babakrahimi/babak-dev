@@ -626,13 +626,29 @@ main button {
 /* Telemetry — reports real values or it does not ship. */
 .tel {
   display: flex;
-  gap: var(--s-2);
+  gap: var(--s-3);
   align-items: baseline;
   width: 100%;
   padding-top: var(--s-2);
 }
 
 .tel__k {
+  color: var(--text-3);
+}
+
+/* Axis letter tight against its value, so "X −0.92" reads as one token. */
+.tel__pair {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s-1);
+}
+
+.tel__axis {
+  font-family: var(--mono);
+  font-size: var(--t-meta);
+  font-weight: 500;
+  letter-spacing: var(--ls-meta);
+  text-transform: uppercase;
   color: var(--text-3);
 }
 

@@ -107,9 +107,27 @@ It carries no explanatory callouts. Labelling the visual effects — "pointer
 glow", "status LED" — would be annotating the design rather than reporting
 anything, which is where this aesthetic turns artificial.
 
-The telemetry beside `Fig. 01` reports the real normalised pointer vector and
-the real state. **Rule: a readout reports something true or it does not ship.**
-No invented build hashes, no fake uptime.
+The readout beneath `Fig. 01` reports the real normalised pointer vector and
+the real state:
+
+```
+FIG. 01   MACINTOSH
+POINTER   X −0.92   Y −0.39                          TRACKING
+```
+
+`X`/`Y` are the pointer's offset from the centre of the machine, saturating at
+±1.00 once the cursor is 320 px away. That is literally the number driving the
+eyes — multiply by 5.5 for their offset in SVG units. The state is one of
+`READY`, `TRACKING`, `IDLE` (after 4 s, when it smiles) or `ACK` (600 ms after
+a click or tap).
+
+It was `PTR −0.92 / −0.39` first. That failed the only test that matters here:
+someone had to ask what it meant. An abbreviation only reads if you already
+know the word, and two bare numbers explain nothing — so the axes are labelled
+now. **Rule: a readout reports something true or it does not ship.** No
+invented build hashes, no fake uptime. But being true is not sufficient; it
+also has to be legible without a tooltip, and there is deliberately no tooltip
+— a visitor only needs to grasp "this is tracking my pointer".
 
 Behaviour by context:
 
