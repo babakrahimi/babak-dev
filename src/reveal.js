@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════
-   Reveals and the section indicator.
+   Reveals, header state, and the current-section marker.
    IntersectionObserver only — no scroll listeners anywhere.
    ══════════════════════════════════════════════════════════════ */
 
@@ -27,58 +27,61 @@ export function initReveals() {
   for (const target of targets) observer.observe(target);
 }
 
-export function initIndicator() {
+/* Header state. A sentinel at the top of the document rather than a scroll
+   listener, so this flips exactly twice per traversal instead of once per
+   frame. The header is fixed from first paint — it never switches
+   positioning mode, only its padding and background change. */
+export function initHeader() {
+  const sentinel = document.querySelector(".sentinel");
+  if (!sentinel || !("IntersectionObserver" in window)) return;
+
+  new IntersectionObserver(
+    ([entry]) => {
+      document.documentElement.classList.toggle(
+        "is-stuck",
+        !entry.isIntersecting,
+      );
+    },
+    { threshold: 0 },
+  ).observe(sentinel);
+}
+
+/* Which section the header's amber square points at. The band is measured
+   from just below the fixed header rather than the literal viewport centre:
+   48%–58% instead of a symmetric 45%–55%, which puts its midpoint at 53% —
+   the centre of the area the header is not covering. */
+export function initCurrentSection() {
   if (!("IntersectionObserver" in window)) return;
 
-  const indicator = document.getElementById("indicator");
-  const num = document.getElementById("indicatorNum");
-  const name = document.getElementById("indicatorName");
-  const sections = document.querySelectorAll(".section");
-  if (!indicator || !num || !name || !sections.length) return;
-
   const links = [...document.querySelectorAll(".nav__link")];
+  const sections = document.querySelectorAll(".section");
+  if (!links.length || !sections.length) return;
+
   const markCurrent = (id) => {
     for (const link of links) {
-      const on = id && link.getAttribute("href") === `#${id}`;
-      if (on) link.setAttribute("aria-current", "location");
-      else link.removeAttribute("aria-current");
+      if (id && link.getAttribute("href") === `#${id}`) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
     }
   };
 
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        const label = entry.target.querySelector(".section__num");
-        const title = entry.target.querySelector(".section__title");
-        if (label) num.textContent = label.textContent.trim();
-        if (title) name.textContent = title.textContent.trim();
-        indicator.classList.add("is-on");
-        markCurrent(entry.target.id);
+        if (entry.isIntersecting) markCurrent(entry.target.id);
       }
     },
-    { rootMargin: "-45% 0px -45% 0px" },
+    { rootMargin: "-48% 0px -42% 0px" },
   );
 
   for (const section of sections) observer.observe(section);
 
-  /* Hidden over the hero — the indicator is orientation, and there is
-     nothing to orient yet — and hidden over the colophon, which it would
-     otherwise sit on top of. */
-  const edges = [
-    [document.querySelector(".hero"), 0.45],
-    [document.querySelector(".colophon"), 0],
-  ];
-
-  for (const [el, threshold] of edges) {
-    if (!el) continue;
-    new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        indicator.classList.remove("is-on");
-        markCurrent(null);
-      },
-      { threshold },
-    ).observe(el);
-  }
+  /* The hero joins the same band with no id, so it clears the marker when it
+     owns the band. One observer and one band means exactly one owner at any
+     scroll position — and unlike a visibility threshold, this still works on
+     a viewport shorter than the hero. */
+  const hero = document.querySelector(".hero");
+  if (hero) observer.observe(hero);
 }

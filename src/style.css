@@ -166,7 +166,6 @@ svg {
 .tel__k,
 .ledger__k,
 .colophon,
-.indicator,
 .instrument-group dt {
   font-family: var(--mono);
   font-weight: 500;
@@ -194,19 +193,54 @@ svg {
 
 /* ── Canvas ────────────────────────────────────────────────── */
 .canvas {
+  position: relative;
   max-width: var(--canvas-max);
   margin-inline: auto;
+  padding-block-start: calc(var(--header-tall) + env(safe-area-inset-top));
   padding-inline: max(var(--page-margin), env(safe-area-inset-left));
+}
+
+/* Zero-height marker at the top of the document. When it leaves the
+   viewport the header is scrolled past — no scroll listener needed. */
+.sentinel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: calc(var(--header-tall) + env(safe-area-inset-top));
+  pointer-events: none;
 }
 
 /* ── Masthead ──────────────────────────────────────────────── */
 .masthead {
+  position: fixed;
+  z-index: 20;
+  inset-block-start: 0;
+  inset-inline: 0;
+}
+
+.masthead__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--s-6);
-  min-height: 4.75rem;
+  max-width: var(--canvas-max);
+  margin-inline: auto;
+  padding-block: calc(var(--s-4) + env(safe-area-inset-top)) var(--s-4);
+  padding-inline: max(var(--page-margin), env(safe-area-inset-left));
+  background: transparent;
   border-bottom: 1px solid var(--rule);
+  transition:
+    padding-top var(--d-3) var(--ease-out),
+    padding-bottom var(--d-3) var(--ease-out),
+    background-color var(--d-3) var(--ease-out);
+}
+
+/* Generous at rest, instrumental once you are moving through the document.
+   Only the padding moves; type and mark stay put. */
+.is-stuck .masthead__inner {
+  padding-block: calc(var(--s-1) + env(safe-area-inset-top)) var(--s-1);
+  background: var(--bg);
 }
 
 .mark {
@@ -269,6 +303,21 @@ svg {
   background: var(--accent);
 }
 
+/* Anything the page can scroll to must clear the fixed header: nav anchors,
+   :target, and — for Shift+Tab back to something above the viewport —
+   every focusable in the document body. */
+:target,
+.section,
+#main {
+  scroll-margin-block-start: calc(var(--header-short) + var(--s-6));
+}
+
+main a,
+main button,
+.colophon a {
+  scroll-margin-block-start: calc(var(--header-short) + var(--s-4));
+}
+
 /* ── Hero ──────────────────────────────────────────────────── */
 .hero {
   position: relative;
@@ -277,7 +326,7 @@ svg {
   grid-template-rows: auto auto auto 1fr;
   column-gap: var(--gutter);
   row-gap: clamp(var(--s-6), 4vh, var(--s-8));
-  min-height: min(calc(100svh - 4.75rem), 52rem);
+  min-height: min(calc(100svh - var(--header-tall)), 52rem);
   padding-block: clamp(var(--s-8), 6vh, var(--s-16)) var(--s-6);
   border-bottom: 1px solid var(--rule);
 }
@@ -864,34 +913,6 @@ svg {
   .colophon__link:hover {
     color: var(--accent-hover);
     text-decoration-color: var(--accent-hover);
-  }
-}
-
-/* ── Section indicator — the one scroll-linked element ─────── */
-.indicator {
-  position: fixed;
-  z-index: 10;
-  bottom: var(--s-6);
-  left: var(--page-margin);
-  display: flex;
-  gap: var(--s-2);
-  color: var(--text-3);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity var(--d-3) var(--ease-out);
-}
-
-.indicator.is-on {
-  opacity: 1;
-}
-
-.indicator__num {
-  color: var(--accent);
-}
-
-@media (max-width: 1023px) {
-  .indicator {
-    display: none;
   }
 }
 

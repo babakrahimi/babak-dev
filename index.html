@@ -51,13 +51,17 @@
 
     <div class="canvas">
       <header class="masthead">
-        <a class="mark" href="/">babak.dev</a>
-        <nav class="nav" aria-label="Sections">
-          <a class="nav__link" href="#approach">Approach</a>
-          <a class="nav__link" href="#instruments" data-optional>Instruments</a>
-          <a class="nav__link" href="#contact">Contact</a>
-        </nav>
+        <div class="masthead__inner">
+          <a class="mark" href="/">babak.dev</a>
+          <nav class="nav" aria-label="Sections">
+            <a class="nav__link" href="#approach">Approach</a>
+            <a class="nav__link" href="#instruments" data-optional>Instruments</a>
+            <a class="nav__link" href="#contact">Contact</a>
+          </nav>
+        </div>
       </header>
+
+      <span class="sentinel" aria-hidden="true"></span>
 
       <main id="main">
         <!-- ── Hero ─────────────────────────────────────────── -->
@@ -343,11 +347,6 @@
         </a>
       </footer>
     </div>
-
-    <p class="indicator" id="indicator" aria-hidden="true">
-      <span class="indicator__num" id="indicatorNum">00</span>
-      <span id="indicatorName">Now</span>
-    </p>
 
     <script type="module" src="/src/main.js"></script>
   </body>

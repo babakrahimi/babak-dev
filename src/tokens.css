@@ -84,6 +84,11 @@
   /* ── Grid ────────────────────────────────────────────────── */
   --gutter: 24px;
   --page-margin: clamp(20px, 4vw, 64px);
+
+  /* Header: 44px tap targets plus padding. Tall at rest, short once the
+     page is moving. Only the padding changes between them. */
+  --header-tall: 76px;   /* 16 + 44 + 16 */
+  --header-short: 52px;  /*  4 + 44 +  4 */
   --canvas-max: 1440px;
   --section-space: clamp(56px, 7.5vh, 96px);
 

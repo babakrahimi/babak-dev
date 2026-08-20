@@ -27,7 +27,7 @@ index.html          Single page. Hero, status strip, 01 Approach / 02 Instrument
 src/tokens.css      Design tokens — colour, type, space, rules, motion
 src/style.css       All styling, in token terms
 src/machine.js      Fig. 01 — the pointer-tracking Macintosh
-src/reveal.js       Scroll reveals and the section indicator
+src/reveal.js       Scroll reveals, header state, current-section marker
 src/main.js         Entry
 public/fonts/       Instrument Sans (variable) + IBM Plex Mono 400/500, latin subsets
 public/og.png       Open Graph card, 1200×630
@@ -59,6 +59,34 @@ The status strip between the hero and `01 / Approach` is deliberately
 subordinate: no heading, no section number, no nav entry, 11px labels over 13px
 text, and roughly a fifth of a section's height. It is one self-contained `<dl>`
 and deletes without touching the layout.
+
+## Header
+
+Fixed from first paint — never `static` then `sticky`, so there is no
+positioning switch and no jump. `.canvas` reserves `--header-tall` of top
+padding, so the space is accounted for before anything renders.
+
+At rest the bar is transparent and reads as part of the hero, with only its 1px
+rule. Once the page moves it goes opaque graphite and tightens from 76 px to
+52 px — padding and background only, no transform, no shadow, no blur. Because
+it is out of flow, that height change moves nothing: the document height and
+every element's position are identical either side of it.
+
+`--header-short` drives `scroll-margin-block-start` on the sections, `:target`
+and every focusable in `main`, so neither a nav click nor a Shift+Tab can park
+content underneath the bar.
+
+State comes from a zero-height sentinel via `IntersectionObserver`, so it flips
+twice per traversal rather than once per frame. There are no scroll listeners
+anywhere in the project.
+
+The current section is marked by a 5 px amber square in the nav
+(`aria-current="location"`). The band that decides it runs 48%–58% of the
+viewport rather than a symmetric 45%–55%, putting its midpoint at 53% — the
+centre of the area the header is *not* covering. The hero is observed by the
+same observer with no `id`, so it clears the marker when it owns the band; that
+works even on a viewport shorter than the hero, which a visibility threshold
+would not.
 
 ## Fig. 01
 
