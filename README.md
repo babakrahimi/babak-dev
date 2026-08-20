@@ -66,11 +66,18 @@ Fixed from first paint — never `static` then `sticky`, so there is no
 positioning switch and no jump. `.canvas` reserves `--header-tall` of top
 padding, so the space is accounted for before anything renders.
 
-At rest the bar is transparent and reads as part of the hero, with only its 1px
-rule. Once the page moves it goes opaque graphite and tightens from 76 px to
-52 px — padding and background only, no transform, no shadow, no blur. Because
-it is out of flow, that height change moves nothing: the document height and
-every element's position are identical either side of it.
+The bar is opaque `--bg` from first paint, in both states. Because that is
+exactly the page background it still reads as part of the hero at the top, but
+it masks everything scrolling beneath it — including the first 76 px, before
+the compact state engages. Nothing about the background changes on scroll; only
+the padding does, tightening from 76 px to 52 px. No transform, no shadow, no
+blur, no translucency. Because the bar is out of flow that height change moves
+nothing: document height and every element position are identical either side
+of it.
+
+The rule is drawn by `.masthead__inner::after`, inset by the gutter, so it lands
+on the same x-positions as every other rule on the page while the background
+still spans the viewport.
 
 `--header-short` drives `scroll-margin-block-start` on the sections, `:target`
 and every focusable in `main`, so neither a nav click nor a Shift+Tab can park

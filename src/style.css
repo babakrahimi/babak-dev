@@ -217,8 +217,7 @@ svg {
   z-index: 20;
   inset-block-start: 0;
   inset-inline: 0;
-  background: transparent;
-  transition: background-color var(--d-3) var(--ease-out);
+  background: var(--bg);
 }
 
 .masthead__inner {
@@ -249,11 +248,8 @@ svg {
 }
 
 /* Generous at rest, instrumental once you are moving through the document.
-   Only the padding moves; type and mark stay put. */
-.is-stuck .masthead {
-  background: var(--bg);
-}
-
+   Only the padding moves — the background never changes, the type and the
+   mark stay put. */
 .is-stuck .masthead__inner {
   padding-block: calc(var(--s-1) + env(safe-area-inset-top)) var(--s-1);
 }
