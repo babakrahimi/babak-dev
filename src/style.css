@@ -324,8 +324,7 @@ svg {
 }
 
 main a,
-main button,
-.colophon a {
+main button {
   scroll-margin-block-start: calc(var(--header-short) + var(--s-4));
 }
 
@@ -893,38 +892,13 @@ main button,
 
 /* ── Colophon ──────────────────────────────────────────────── */
 .colophon {
-  display: grid;
-  justify-items: start;
-  gap: var(--s-2);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-2) var(--s-8);
   padding-block: var(--s-6) var(--s-16);
   border-top: 1px solid var(--rule);
   color: var(--text-3);
-}
-
-.colophon__link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-  min-height: 2.75rem;
-  margin-top: var(--s-1);
-  color: var(--text-2);
-  text-decoration: underline;
-  text-decoration-color: var(--accent-dim);
-  text-underline-offset: 3px;
-  transition:
-    color var(--d-1) var(--ease-out),
-    text-decoration-color var(--d-1) var(--ease-out);
-}
-
-.colophon__link .arrow {
-  color: inherit;
-}
-
-@media (hover: hover) {
-  .colophon__link:hover {
-    color: var(--accent-hover);
-    text-decoration-color: var(--accent-hover);
-  }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1247,6 +1221,7 @@ main button,
   }
 
   .colophon {
+    justify-content: flex-start;
     gap: var(--s-2) var(--s-6);
     padding-bottom: var(--s-12);
   }

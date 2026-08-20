@@ -147,5 +147,10 @@ carries a 1 px amber `:focus-visible` ring and scrolls into view on Tab.
 
 The copy is deliberately matter-of-fact. The visual system and the Macintosh
 carry the personality, so the writing does not need to perform — no aphorisms
-written to be quoted, no "crafted with care", no coffee. The colophon stays a
-colophon: copyright, typefaces, stack, source. Nothing else earns a line.
+written to be quoted, no "crafted with care", no coffee.
+
+The colophon is one row of three facts: copyright, city, typefaces. It carries
+no build stack and no source link — deployment infrastructure says nothing
+about the person whose site this is, and a stack badge is the most conventional
+thing a developer footer can contain. The typefaces stay because that is what a
+colophon is for.

@@ -34,10 +34,10 @@
   /* ── Accent ──────────────────────────────────────────────
      Signal amber. Chroma capped at .135 — luminous, never neon.
      Never body text, never a large fill, never a glowing border.
-     Budget: at most six accent marks on screen at once. */
+     Budget: at most six accent marks on screen at once. Two steps only —
+     the dim step went with the last underlined link on the page. */
   --accent: #edb24d;          /* oklch(.800 .135 78) — 10.33:1 on --bg */
   --accent-hover: #fdcc6e;    /* oklch(.870 .125 82) — 13.09:1 */
-  --accent-dim: #7a5617;      /* oklch(.480 .090 76) — rules and underlines only, never text */
 
   /* ── Type ────────────────────────────────────────────────── */
   --sans: "Instrument Sans", var(--sans-fallback);
