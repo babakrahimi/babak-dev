@@ -11,6 +11,8 @@ No framework, no runtime dependencies.
 
 ## Commands
 
+Requires Node >= 22.12 (pinned in `engines`, required by Vite 8).
+
 | Command           | Action                                  |
 | ----------------- | --------------------------------------- |
 | `npm install`     | Install dependencies (Vite only)        |
@@ -93,9 +95,9 @@ Measured on the production build:
 
 | Asset | Raw     | Transferred |
 | ----- | ------- | ----------- |
-| HTML  | 14.7 kB | 3.6 kB      |
-| CSS   | 18.7 kB | 4.7 kB      |
-| JS    | 5.1 kB  | 2.0 kB      |
+| HTML  | 14.7 kB | 3.5 kB      |
+| CSS   | 18.6 kB | 4.7 kB      |
+| JS    | 5.0 kB  | 1.9 kB      |
 | Fonts | 48.8 kB | 48.8 kB     |
 
 **59 kB** total on first load, zero raster images on the critical path, zero
