@@ -1,0 +1,134 @@
+/* ══════════════════════════════════════════════════════════════
+   BENCH — design tokens for babak.dev
+   Authored in OKLCH for perceptually even steps, shipped as hex
+   so the stylesheet has no runtime colour maths.
+
+   Deliberately single-theme. The direction is a dark surface; a
+   light variant of this palette is a separate design problem
+   (amber reads as brass on graphite and as mustard on white), so
+   it is not a token flip. Tokens stay semantic to keep that door
+   open.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  color-scheme: dark;
+
+  /* ── Surfaces ─────────────────────────────────────────────
+     Ground is very slightly cool (hue 255). Combined with warm
+     text below, this is what keeps the greyscale from reading
+     as a default. */
+  --bg: #0a0c0f;              /* oklch(.155 .006 255) — the one large surface */
+  --bg-elevated: #131518;     /* oklch(.195 .007 255) — the machine's screen, and nothing else */
+
+  /* ── Rules ───────────────────────────────────────────────
+     Two weights plus the accent. No fourth. */
+  --rule: #272a2e;            /* oklch(.285 .008 255) — structure. The workhorse. */
+  --rule-strong: #3e4145;     /* oklch(.375 .008 255) — active state, machine chassis */
+
+  /* ── Text ────────────────────────────────────────────────
+     Warm (hue 85) against the cool ground. Never pure white. */
+  --text: #eeede9;            /* oklch(.945 .005 85) — 16.72:1 on --bg */
+  --text-2: #b3b1ad;          /* oklch(.760 .006 85) —  9.15:1 */
+  --text-3: #7d7b78;          /* oklch(.585 .006 85) —  4.64:1, labels only */
+
+  /* ── Accent ──────────────────────────────────────────────
+     Signal amber. Chroma capped at .135 — luminous, never neon.
+     Never body text, never a large fill, never a glowing border.
+     Budget: at most six accent marks on screen at once. */
+  --accent: #edb24d;          /* oklch(.800 .135 78) — 10.33:1 on --bg */
+  --accent-hover: #fdcc6e;    /* oklch(.870 .125 82) — 13.09:1 */
+  --accent-dim: #7a5617;      /* oklch(.480 .090 76) — rules and underlines only, never text */
+
+  /* ── Type ────────────────────────────────────────────────── */
+  --sans: "Instrument Sans", var(--sans-fallback);
+  --mono: "IBM Plex Mono", var(--mono-fallback);
+  --sans-fallback: "Instrument Sans Fallback", ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono-fallback: "IBM Plex Mono Fallback", ui-monospace, SFMono-Regular,
+    Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Fluid display. Tracking tightens as size grows. */
+  --t-display: clamp(2.75rem, min(8.5vw, 12.5vh), 6.5rem);
+  --t-h2: clamp(1.5rem, 2.6vw, 2.25rem);
+  --t-h3: 1.0625rem;
+  --t-lede: clamp(1.125rem, 1.6vw, 1.375rem);
+  --t-body: 1rem;
+  --t-caption: 0.8125rem;
+  --t-data: 0.8125rem;      /* mono, NOT uppercase — numbers stay readable */
+  --t-nav: 0.75rem;         /* mono, uppercase */
+  --t-meta: 0.6875rem;      /* mono, uppercase — the workhorse label */
+
+  --ls-display: -0.03em;
+  --ls-h2: -0.018em;
+  --ls-lede: -0.01em;
+  --ls-nav: 0.07em;
+  --ls-meta: 0.09em;
+
+  --lh-display: 0.94;
+  --lh-h2: 1.15;
+  --lh-body: 1.62;
+
+  --measure-lede: 46ch;
+
+  /* ── Space — 4px base ───────────────────────────────────── */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-12: 48px;
+  --s-16: 64px;
+
+  /* ── Grid ────────────────────────────────────────────────── */
+  --gutter: 24px;
+  --page-margin: clamp(20px, 4vw, 64px);
+  --canvas-max: 1440px;
+  --section-space: clamp(56px, 7.5vh, 96px);
+
+  /* One radius, 2px. No rounded-lg, anywhere. */
+  --radius: 2px;
+
+  /* ── Motion ──────────────────────────────────────────────── */
+  --d-1: 120ms;
+  --d-2: 180ms;
+  --d-3: 260ms;
+  --d-4: 420ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --gutter: 16px;
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    --gutter: 12px;
+    --section-space: 56px;
+  }
+}
+
+/* ── Fallback metrics ───────────────────────────────────────
+   Matched to the real faces so the swap causes no layout shift.
+   Overridden ascent/descent keep line boxes identical while the
+   webfont loads. */
+@font-face {
+  font-family: "Instrument Sans Fallback";
+  src: local("Helvetica Neue"), local("Arial"), local("Segoe UI");
+  size-adjust: 100%;
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono Fallback";
+  src: local("Menlo"), local("Consolas"), local("DejaVu Sans Mono");
+  size-adjust: 97%;
+  ascent-override: 100%;
+  descent-override: 26%;
+  line-gap-override: 0%;
+}
