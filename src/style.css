@@ -217,9 +217,12 @@ svg {
   z-index: 20;
   inset-block-start: 0;
   inset-inline: 0;
+  background: transparent;
+  transition: background-color var(--d-3) var(--ease-out);
 }
 
 .masthead__inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -228,19 +231,31 @@ svg {
   margin-inline: auto;
   padding-block: calc(var(--s-4) + env(safe-area-inset-top)) var(--s-4);
   padding-inline: max(var(--page-margin), env(safe-area-inset-left));
-  background: transparent;
-  border-bottom: 1px solid var(--rule);
   transition:
     padding-top var(--d-3) var(--ease-out),
-    padding-bottom var(--d-3) var(--ease-out),
-    background-color var(--d-3) var(--ease-out);
+    padding-bottom var(--d-3) var(--ease-out);
+}
+
+/* The rule sits inside the gutters, on the same x-positions as every other
+   rule on the page. The background is free to span the viewport; the rule is
+   a measurement and has to agree with the grid. */
+.masthead__inner::after {
+  content: "";
+  position: absolute;
+  inset-inline: max(var(--page-margin), env(safe-area-inset-left));
+  inset-block-end: 0;
+  height: 1px;
+  background: var(--rule);
 }
 
 /* Generous at rest, instrumental once you are moving through the document.
    Only the padding moves; type and mark stay put. */
+.is-stuck .masthead {
+  background: var(--bg);
+}
+
 .is-stuck .masthead__inner {
   padding-block: calc(var(--s-1) + env(safe-area-inset-top)) var(--s-1);
-  background: var(--bg);
 }
 
 .mark {
